@@ -1,7 +1,3 @@
----
-import Icon from './Icon.astro';
----
-
 <language-picker>
     <div class="flags">
         <button class="flag-button" data-lang="en" aria-label="Switch to English" hidden>
@@ -43,8 +39,8 @@ import Icon from './Icon.astro';
         this.updateFlags();
         this.querySelectorAll('.flag-button').forEach(button => {
             button.addEventListener('click', () => {
-                const lang = button.dataset.lang;
-                this.switchLanguage(lang);
+                const lang = (button as HTMLButtonElement).dataset.lang;
+                this.switchLanguage(lang || '');
                 this.updateFlags();  // S'assure que les drapeaux sont mis à jour après le changement
             });
         });
@@ -55,11 +51,11 @@ import Icon from './Icon.astro';
 		console.log(currentLang);
         this.querySelectorAll('.flag-button').forEach(button => {
             // Cache le bouton de la langue actuelle
-            button.hidden = (button.dataset.lang === currentLang);
+            (button as HTMLButtonElement).hidden = ((button as HTMLButtonElement).dataset.lang === currentLang);
         });
     }
 
-    switchLanguage(lang) {
+    switchLanguage(lang: string) {
         const path = window.location.pathname;
         const segments = path.split('/').filter(Boolean);
         if (['en', 'fr'].includes(segments[0])) {
