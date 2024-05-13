@@ -1,14 +1,19 @@
 ---
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import LanguagePicker from './LanguagePicker.astro';
 import type { iconPaths } from './IconPaths';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 /** Main menu items */
-const textLinks: { label: string; href: string }[] = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Work', href: '/work/' },
-	{ label: 'Experience', href: '/experience/' },
-	{ label: 'About', href: '/about/' },
+const textLinks = [
+	{ label: `${t('nav.home')}`, href: `/${lang}/` },
+	{ label: `${t('nav.work')}`, href: `/${lang}/work/` },
+	{ label: `${t('nav.experience')}`, href: `/${lang}/experience/` },
+	{ label: `${t('nav.about')}`, href: `/${lang}/about/` },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -36,6 +41,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		</menu-button>
 	</div>
 	<noscript>
+
 		<ul class="nav-items">
 			{
 				textLinks.map(({ label, href }) => (
@@ -47,7 +53,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 								{
 									active:
 										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
+										(href !== `/${lang}/` && Astro.url.pathname.startsWith(href)),
 								},
 							]}
 							href={href}
@@ -85,7 +91,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 								{
 									active:
 										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
+										(href !== `/${lang}/` && Astro.url.pathname.startsWith(href)),
 								},
 							]}
 							href={href}
@@ -110,6 +116,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 
 			<div class="theme-toggle">
 				<ThemeToggle />
+			</div>
+
+			<div class="language-picker">
+				<LanguagePicker />
 			</div>
 		</div>
 	</div>

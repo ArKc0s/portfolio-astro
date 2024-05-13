@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import ContactCTA from '../../components/ContactCTA.astro';
+import Hero from '../../components/Hero.astro';
+---
+
+<BaseLayout title="Experience | Léo Wadin" description="About Léo Wadin Lorem Ipsum">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="Experience"
+				tagline="Dive into my professional journey and learn about my background."
+			>
+
+			<img
+					width="1536"
+					height="864"
+					src="/assets/me.jpg"
+					alt="Léo Wadin in a restaurant, looking at the menu."
+				/>
+	
+			</Hero>
+
+			<section>
+				<div class="section-header">
+					<h2 class="section-title">Enedis</h2>
+					<h4 class="section-subtitle">2022 - Now</h2>
+					<img src="/assets/enedis.png" alt="Enedis" width="80%" height="auto">
+				</div>
+
+				<div class="content">
+					<h5>
+						3 years as a student-apprentice
+					</h5>
+					<br>
+					<p>
+						During my work-study placement at Enedis, France's leading electricity distributor, I have the opportunity to play an important role in the design and development of several IT solutions for the Valenciennes branch. My main responsibilities as project manager and developer are : 
+					</p>
+					<br>
+					<ul class="exp-list">
+						<li>Analysing business needs and translating functional requirements into technical specifications.</li>
+						<li>Designing and implementing innovative solutions using company-approved solutions such as CodeIgniter.</li>
+						<li>Produce mock-ups for the tools in order to design a clear and practical interface for the end users.</li>
+						<li>Maintaining and upgrading existing solutions to comply with standards or better meet requirements.</li>
+						<li>Drawing up the documentation required for user training.</li>
+					</ul>
+					<br>
+					<p>
+						This experience allows me to hone my technical skills, but also helps me to develop a professional and relational approach to meeting the complex challenges of IT in a constantly changing environment and to better transcribe the needs of end-users.
+					</p>
+				</div>
+			</section>
+			
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+
+	p {
+		text-align: justify;
+	}
+
+	.exp-list {
+		list-style-type: disc;
+		margin-left: 1.5rem;
+	}
+
+	.exp-list > li {
+		margin-bottom: 0.5rem;
+	}
+
+	.flex-row {
+		display: flex;
+		gap: 5rem;
+	}
+
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-header {
+		grid-column-start: 1;
+	}
+
+	.section-title {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.section-subtitle {
+		font-size: var(--text-base);
+		color: var(--gray-0);
+	}
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
